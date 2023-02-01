@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>NinthAgeCmsToArmyBook.WebApp</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.16" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.16" PrivateAssets="all" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\NinthAgeRanking.Shared\NinthAgeRanking.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\ArmieLists\ArmyListPage.razor" />
+      <_ContentIncludedByDefault Remove="Pages\ArmieLists\ArmyPage.razor" />
+      <_ContentIncludedByDefault Remove="Pages\ArmieLists\MinMaxEditBox.razor" />
+      <_ContentIncludedByDefault Remove="Pages\ArmieLists\ProfileEditBox.razor" />
+      <_ContentIncludedByDefault Remove="Pages\ArmieLists\UnitComponent.razor" />
+    </ItemGroup>
+
+</Project>

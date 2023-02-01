@@ -1,0 +1,35 @@
+﻿version: '3.9'
+services:
+  9th-age-league:
+    image: modmoto/9th-age-league:${TAG}
+    container_name: 9th-age-league-${CONTAINER_SUFFIX}
+    restart: unless-stopped
+    expose:
+      - 80
+    environment:
+      - MONGO_DB_CONNECTION_STRING=${MONGO_DB_CONNECTION_STRING}
+      - LATEX_EXECUTABLE_PATH=${LATEX_EXECUTABLE_PATH}
+      - ELASTIC_URL=${ELASTIC_URL}
+      - ELASTIC_SECRET=${ELASTIC_SECRET}
+
+  mongo-db:
+    image: mongo
+    container_name: mongo-db-9th-age-league-${CONTAINER_SUFFIX}
+    restart: unless-stopped
+    ports:
+      - ${DB_PORT}:27017
+    command: --wiredTigerCacheSizeGB=1
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_SECRET}
+    volumes:
+      - mongo-db-9th-age-league:/data/db
+
+networks:
+  default:
+    external:
+      name: caddy
+
+volumes:
+  mongo-db-9th-age-league:
+    name: mongo-db-9th-age-league-${CONTAINER_SUFFIX}
