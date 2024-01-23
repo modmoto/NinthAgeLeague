@@ -3,6 +3,7 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using NinthAgeCmsToArmyBook.Shared.Ladder;
 using NinthAgeCmsToArmyBook.WebApp;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -13,5 +14,6 @@ builder.Services.AddScoped(_ => new HttpClient
 {
     BaseAddress = new Uri(builder.HostEnvironment.BaseAddress),
 });
+
 
 await builder.Build().RunAsync();

@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MongoDB.Driver;
+using NinthAgeCmsToArmyBook.Api;
+using NinthAgeCmsToArmyBook.Shared.Ladder;
 using Serilog;
 using Serilog.Sinks.Elasticsearch;
 
@@ -37,6 +39,13 @@ builder.Services.AddSingleton(_ =>
     var mongoConnectionString = Environment.GetEnvironmentVariable("MONGO_DB_CONNECTION_STRING");
     return new MongoClient(mongoConnectionString);
 });
+
+builder.Services.AddHttpClient<IMmrRepository, MmrRepository>(c =>
+{
+    var mmrUri = Environment.GetEnvironmentVariable("MMR_SERVICE_URI") ?? "https://mmr-service.w3champions.com";
+    c.BaseAddress = new Uri(mmrUri);
+}); 
+builder.Services.AddTransient<IRankingReadmodelRepository, RankingReadmodelRepository>();
 
 var app = builder.Build();
 
